@@ -5,8 +5,22 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sound.midi.ShortMessage;
+
 public class MidiCsvParser {
 	
+	/**
+	 * Parses each line of the received csv file,
+	 * splitting the lines with commas and creating 
+	 * MidiEvent objects from the information in each
+	 * line before adding it to an ArrayList which
+	 * is to be returned
+	 * @param filePath The file path to the csv file
+	 * to be parsed
+	 * @return A MidiEventData ArrayList with a
+	 * MidiEventData object for every line in the
+	 * csv file
+	 */
 	public static List<MidiEventData> parseCsv(String filePath) {
 		
 		List<MidiEventData> midiEvents = new ArrayList<MidiEventData>();
@@ -26,13 +40,12 @@ public class MidiCsvParser {
                 int velocity = Integer.parseInt(parts[4]);
                 int instrument = Integer.parseInt(parts[5]);
 
-                int noteOnOff;
-                if(eventType.equals("Note_on_c")) {
-                	noteOnOff = 1;
-                }//end if
-                else {
-                	noteOnOff = 0;
-                }//end else
+                int noteOnOff = -1;
+                if (eventType.equals("Note_on_c")) {
+                    noteOnOff = (velocity == 0) ? ShortMessage.NOTE_OFF : ShortMessage.NOTE_ON;
+                } else if (eventType.equals("Note_off_c")) {
+                    noteOnOff = ShortMessage.NOTE_OFF;
+                }//end else if
 	                
 	            midiEvents.add(new MidiEventData(startEndTick, velocity, note, channel, instrument, noteOnOff));
 			}//end while
