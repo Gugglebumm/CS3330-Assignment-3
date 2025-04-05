@@ -7,7 +7,7 @@ import javax.sound.midi.ShortMessage;
 
 public class StandardMidiEventFactory implements MidiEventFactory {
 
-	    @Override
+		@Override
 		public MidiEvent createNoteOn(int tick, int note, int velocity, int channel) throws InvalidMidiDataException {
 			
 			ShortMessage message = new ShortMessage();
@@ -15,7 +15,7 @@ public class StandardMidiEventFactory implements MidiEventFactory {
 			return new MidiEvent(message, tick);
 		}//end createNoteOn
 		
-	    @Override
+		@Override
 		public MidiEvent createNoteOff(int tick, int note, int channel) throws InvalidMidiDataException {
 			
 			ShortMessage message = new ShortMessage();
@@ -23,10 +23,4 @@ public class StandardMidiEventFactory implements MidiEventFactory {
 			return new MidiEvent(message, tick);
 		}//end CreateNoteOff
 
-		/*@Override
-		public MidiEvent createNoteOff(int tick, int note, int velocity, int channel) throws InvalidMidiDataException {
-			// TODO Auto-generated method stub
-			return null;
-		}*/
-		
 }
