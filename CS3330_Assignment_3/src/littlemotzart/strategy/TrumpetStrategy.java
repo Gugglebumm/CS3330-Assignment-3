@@ -2,8 +2,19 @@ package littlemotzart.strategy;
 
 import javax.sound.midi.*;
 
+/**
+ * Strategy implementation that applies the Trumpet instrument
+ * to a given MIDI track.
+ */
 public class TrumpetStrategy implements InstrumentStrategy {
-	
+
+    /**
+     * Applies the Trumpet (program number 56) instrument to the specified
+     * MIDI track on the given channel.
+     *
+     * @param track the MIDI track to apply the instrument to
+     * @param channel the MIDI channel on which to apply the instrument
+     */
     @Override
     public void applyInstrument(Track track, int channel) {
         try {
@@ -13,6 +24,6 @@ public class TrumpetStrategy implements InstrumentStrategy {
         } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
-    }//end applyInstrument
-    
-}//end TrumpetStrategy
+    } // end applyInstrument
+
+} // end TrumpetStrategy
