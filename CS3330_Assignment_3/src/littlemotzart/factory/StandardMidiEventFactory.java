@@ -3,10 +3,18 @@ package littlemotzart.factory;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiEvent;
 import javax.sound.midi.ShortMessage;
-//import javax.sound.midi.MidiMessage;
 
 public class StandardMidiEventFactory implements MidiEventFactory {
 
+		/**
+	 	* Creates a NOTE_ON MIDI event at the given tick.
+	 	* @param tick the time (in ticks) to play the note
+	 	* @param note the MIDI note value (pitch)
+	 	* @param velocity the note velocity (volume)
+	 	* @param channel the MIDI channel (instrument track)
+	 	* @return the MidiEvent representing the note-on message
+	 	* @throws InvalidMidiDataException if the message is invalid
+	 	*/
 		@Override
 		public MidiEvent createNoteOn(int tick, int note, int velocity, int channel) throws InvalidMidiDataException {
 			
@@ -15,6 +23,15 @@ public class StandardMidiEventFactory implements MidiEventFactory {
 			return new MidiEvent(message, tick);
 		}//end createNoteOn
 		
+		/**
+		* Creates a NOTE_OFF MIDI event at the given tick.
+		* @param tick the time (in ticks) to stop the note
+		* @param note the MIDI note value (pitch)
+		* @param velocity unused velocity parameter
+		* @param channel the MIDI channel (instrument track)
+		* @return the MidiEvent representing the note-off message
+		* @throws InvalidMidiDataException if the message is invalid
+		*/
 		@Override
 		public MidiEvent createNoteOff(int tick, int note, int channel) throws InvalidMidiDataException {
 			
@@ -23,4 +40,4 @@ public class StandardMidiEventFactory implements MidiEventFactory {
 			return new MidiEvent(message, tick);
 		}//end CreateNoteOff
 
-}
+}//end StandardMidiEventFactory
